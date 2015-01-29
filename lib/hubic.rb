@@ -165,16 +165,15 @@ class Hubic
             :response_type => 'code',
             :redirect_uri  => @redirect_uri,
             :scope         => 'account.r,usage.r,links.drw,credentials.r',
-            :state         => 'RandomString'
+            :state         => 'random'
         }
-
         # Autofill confirmation 
         params = {}
         doc = Nokogiri::HTML(r.body)
         doc.css('input').each {|i|
             case i[:name]
             when 'login'
-                params[:login] = user
+                params[:login   ] = user
                 next
             when 'user_pwd'
                 params[:user_pwd] = password
@@ -255,6 +254,5 @@ class Hubic
     end
 
 end
-
 
 
